@@ -2,3 +2,9 @@ pyYAML
 ensure
 python-box
 joblib
+langchain
+langchain_core
+langchain-google-genai
+langchain-community
+
+
