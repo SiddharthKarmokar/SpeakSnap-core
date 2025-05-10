@@ -8,6 +8,7 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 from box.exceptions import BoxValueError
+import numpy as np
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -33,7 +34,6 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
     except Exception as e:
         raise e
 
-
 @ensure_annotations
 def save_json(path: Path, data:dict):
     """save json data
@@ -46,7 +46,6 @@ def save_json(path: Path, data:dict):
         json.dump(data, f, indent=4)
     
     logger.info(f"json file saved at: {path}")
-
 
 @ensure_annotations
 def load_json(path: Path) -> ConfigBox:
@@ -75,7 +74,6 @@ def save_bin(data: Any, path: Path):
     joblib.dump(value=data, filename=path)
     logger.info(f"binary file saved at: {path}")
 
-
 @ensure_annotations
 def create_directories(path_to_directories:list, verbose=True):
     """create list of directories
@@ -88,3 +86,19 @@ def create_directories(path_to_directories:list, verbose=True):
         os.makedirs(path, exist_ok=True)
         if verbose:
             logger.info(f"created directioy at: {path}")
+
+@ensure_annotations
+def save_numpy_array(file_path: str, array: np.array):
+    """Save numpy array to file path
+
+    Args:
+        file_path (str): Path to save array
+        array (numpy array): Array to save
+
+    Returns:
+        None  
+    """
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, "wb") as file:
+        np.save(file, array)
+    logger.info(f"Numpy array saved at {file_path}")

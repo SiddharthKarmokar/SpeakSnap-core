@@ -1,0 +1,38 @@
+{
+    "title":"Summary",
+    "type":"object",
+    "properties": {
+        "summary":{
+            "type": "string",
+            "description": "A brief summary of the text"
+        },
+        "sentiment":{
+            "type": "string",
+            "enum": ["pos", "neu", "neg"],
+            "description": "Return the sentiment of the review as positive, neutral or negative"
+        },
+        "name":{
+            "type":["string", "null"],
+            "description": "The speaker's name, if available. Use null if the speaker is unidentified or not mentioned in the text."
+        },
+         "contextual_explanations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "term": {
+                        "type": "string",
+                        "description": "The special or domain-specific word found in the text use null if unidentified"
+                    },
+                    "explanation": {
+                        "type": "string",
+                        "description": "A short explanation of what the word or term means in this context"
+                    }
+                },
+                "required": ["term", "explanation"]
+            },
+            "description": "List of special terms used in the conversation with their brief explanations"
+        }
+    },
+    "required": ["summary", "sentiment"]
+}

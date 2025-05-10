@@ -1,4 +1,5 @@
 /venv
 /Artifacts
 /logs
+/chroma_db
 .env
