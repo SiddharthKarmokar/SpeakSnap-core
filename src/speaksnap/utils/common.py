@@ -102,3 +102,22 @@ def save_numpy_array(file_path: str, array: np.array):
     with open(file_path, "wb") as file:
         np.save(file, array)
     logger.info(f"Numpy array saved at {file_path}")
+
+@ensure_annotations
+def load_numpy_array(file_path: str) -> np.ndarray:
+    """Load numpy array from file path
+
+    Args:
+        file_path (str): Path to load array from
+
+    Returns:
+        np.ndarray: Loaded array
+    """
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"No file found at {file_path}")
+    
+    with open(file_path, "rb") as file:
+        array = np.load(file)
+    
+    logger.info(f"Numpy array loaded from {file_path}")
+    return array

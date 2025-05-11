@@ -4,7 +4,7 @@
     "properties": {
         "summary":{
             "type": "string",
-            "description": "A brief summary of the text"
+            "description": "A overall summary of the entire chat history until the most recent query, in as few lines as possible"
         },
         "sentiment":{
             "type": "string",
