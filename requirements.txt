@@ -1,3 +1,5 @@
+fastapi
+uvicorn[standard]
 pyYAML
 ensure
 python-box
@@ -6,5 +8,3 @@ langchain_core
 langchain-google-genai
 protobuf==3.20.3
 pydantic[email]
-
-
