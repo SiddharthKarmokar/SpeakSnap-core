@@ -11,4 +11,4 @@ async def index():
 app.include_router(summary_router, prefix="/api/summary")
 
 if __name__ == "__main__":
-    app_run("main:app", host="0.0.0.0", port=8000, reload=True)#on port 8000 not 8080
+    app_run("main:app", host="0.0.0.0", port=8000, reload=True)#on port 8000, not 8080
