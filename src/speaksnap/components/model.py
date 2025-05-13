@@ -19,7 +19,7 @@ class Model:
             ('human', '{query}')
         ])
         self.chain = self.template | self.model
-        logger.info(f"Chain setup complete with response schema\n{model_schema}")
+        # logger.info(f"Chain setup complete with response schema\n{model_schema}")
 
     def invoke_chain(self, query:str, chat_history: str = ""):
         result = self.chain.invoke({"chat_history":[chat_history], "query":query})
