@@ -7,10 +7,10 @@ COPY requirements.txt .
 
 # Install dependencies and pip packages with better error handling
 RUN apt-get update && \
-    apt-get install -y awscli cron || (echo "Failed to install awscli and cron" && exit 1) && \
-    pip install --upgrade pip || (echo "Failed to upgrade pip" && exit 1) && \
-    pip install --no-cache-dir -r requirements.txt || (echo "Failed to install dependencies from requirements.txt" && exit 1) && \
-    rm -rf /var/lib/apt/lists/* || (echo "Failed to clean up apt cache" && exit 1)
+    apt-get install -y --no-install-recommends awscli cron && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Setup cron job
 COPY cron_job.py /app/cron_job.py

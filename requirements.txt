@@ -1,16 +1,10 @@
 pyYAML
 ensure
 python-box
-joblib
 langchain
 langchain_core
 langchain-google-genai
-langchain-community
-langchain-huggingface
-sentence-transformers
-chromadb
 protobuf==3.20.3
-redis
 pydantic[email]
 
 

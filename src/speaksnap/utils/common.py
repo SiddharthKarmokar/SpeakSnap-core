@@ -2,7 +2,6 @@ import os
 import yaml
 from src.speaksnap import logger
 import json
-import joblib
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
@@ -62,17 +61,6 @@ def load_json(path: Path) -> ConfigBox:
     
     logger.info(f"json file loaded successfully from: {path}")
     return ConfigBox(content)
-
-@ensure_annotations
-def save_bin(data: Any, path: Path):
-    """save binary file
-
-    Args:
-        data (Any): data to be saved as binary
-        path (Path): path to binary file
-    """
-    joblib.dump(value=data, filename=path)
-    logger.info(f"binary file saved at: {path}")
 
 @ensure_annotations
 def create_directories(path_to_directories:list, verbose=True):
