@@ -1,6 +1,3 @@
-Got it! Here's the **complete `README.md`** with everything integrated into one single document, including the Core section and the other details:
-
-````markdown
 # SpeakSnap 🧠💬
 
 **SpeakSnap** is an AI-powered meeting companion that enhances real-time conversations by identifying and summarizing domain-specific terms as you speak — helping everyone stay on the same page.
@@ -158,6 +155,71 @@ The app will be available at [http://localhost:5173](http://localhost:5173).
 
 ---
 
+## 🌍 Hosted API Server
+
+Due to some technical difficulties, we have only hosted the **API server** at the following URL:
+
+* **API Endpoint:** [http://52.23.182.233:8080/api/summary/](http://52.23.182.233:8080/api/summary/)
+
+### Request JSON Schema
+
+The API accepts the following JSON request schema:
+
+```json
+{
+  "text": "string",
+  "userid": "string",
+  "sessionid": "string"
+}
+```
+
+### Response JSON Schema
+
+The response schema is as follows:
+
+```json
+{
+  "title": "Summary",
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "An overall summary of the entire chat history until the most recent query, in as few lines as possible but make sure to the major components of old text as well"
+    },
+    "sentiment": {
+      "type": "string",
+      "enum": ["pos", "neu", "neg"],
+      "description": "Return the sentiment of the conversation as positive, neutral, or negative"
+    },
+    "name": {
+      "type": ["string", "null"],
+      "description": "The speaker's name, if available. Use null if the speaker is unidentified or not mentioned in the text."
+    },
+    "contextual_explanations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "description": "A term or phrase used in the conversation that might require explanation—this includes pop culture references (e.g., TV shows, movies), scientific terms, financial or economic concepts, historical or political references, technical jargon, or any other potentially unclear or domain-specific expression."
+          },
+          "explanation": {
+            "type": "string",
+            "description": "A concise explanation of the term in the context it was used, aimed at someone who may not be familiar with it."
+          }
+        },
+        "required": ["term", "explanation"]
+      },
+      "description": "List of all terms or phrases in the conversation that could benefit from contextual explanation, regardless of their domain."
+    }
+  },
+  "required": ["summary", "sentiment"]
+}
+```
+
+---
+
 ## ✅ Workflow Summary
 
 1. Start the **Core** service (`python core/main.py`)
@@ -174,13 +236,12 @@ The app will be available at [http://localhost:5173](http://localhost:5173).
 
 ---
 
+### 🖼 Preview:
+---
+![GIF Slider](slider.gif)
+---
+
+
 ## 📄 License
 
 MIT License – See individual folders for details.
-
-```
-
----
-
-This is the **single complete README.md**, integrating all the parts (Core and Suite) as you requested. It's now ready to be used at the root of your repository. Let me know if you'd like any further adjustments!
-```
